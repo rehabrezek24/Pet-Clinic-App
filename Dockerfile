@@ -1,8 +1,6 @@
 FROM openjdk:17
 WORKDIR /app
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-COPY src ./src
-RUN ./mvnw package
+COPY target/*.jar  /app/target
 EXPOSE 8080
-CMD ["java", "-jar", "target/spring-petclinic-3.2.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "/app/target"]
+
