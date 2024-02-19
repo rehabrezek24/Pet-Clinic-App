@@ -24,10 +24,10 @@ pipeline {
         			-e POSTGRES_USER=petclinic \
         			-e POSTGRES_PASSWORD=petclinic \
         			-v /var/lib/docker/volumes/dev-vol:/var/lib/postgresql/data \
-        			--network net-1 postgres:15.2
+        			--network net-$BUILD_NUMBER postgres:15.2
 
         			docker run -d -p 8070:8080 --name "java-app-dev" \
-        			--network net-1 \
+        			--network net-$BUILD_NUMBER \
         			-e SPRING.PROFILES.ACTIVE=postgres \
         			-e POSTGRES_USER=petclinic \
         			-e POSTGRES_URL=jdbc:postgresql://db-dev/petclinic \
@@ -49,10 +49,10 @@ pipeline {
                                 -e POSTGRES_USER=petclinic \
                                 -e POSTGRES_PASSWORD=petclinic \
                                 -v /var/lib/docker/volumes/prod-vol:/var/lib/postgresql/data \
-                                --network net-1 postgres:15.2
+                                --network net-$BUILD_NUMBER postgres:15.2
 
-                                docker run -d -p 8090:8080 --name "java-app-dev" \
-                                --network net-1 \
+                                docker run -d -p 8090:8080 --name "java-app-prod" \
+                                --network net-$BUILD_NUMBER \
                                 -e SPRING.PROFILES.ACTIVE=postgres \
                                 -e POSTGRES_USER=petclinic \
                                 -e POSTGRES_URL=jdbc:postgresql://db-prod/petclinic \
