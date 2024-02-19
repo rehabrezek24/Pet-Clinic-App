@@ -17,7 +17,7 @@ pipeline {
 	         steps {
 
 			 sh """
-        			docker network create net-1
+				docker network create net-$BUILD_NUMBER				
 
         			docker run -d --name "db-dev" -p 5432:5432 \
         			-e POSTGRES_DB=petclinic \
