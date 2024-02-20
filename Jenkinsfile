@@ -1,24 +1,7 @@
 pipeline {
     agent  any
-
-    tools {	
-    	maven
-    }
-	
-    stages {
-
-        stage('Build app with maven') {
-            steps {
-
-                 sh """
-                    java -version
-                    mvn -version 
-                    ./mvnw package
-                 """ 
-            }
-        }
         
-        stage('Build docker image') {
+	stage('Build docker image') {
             steps {
 
                  sh "docker build -t petclinic:v$BUILD_NUMBER . "
