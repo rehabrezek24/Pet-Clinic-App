@@ -24,6 +24,7 @@ pipeline {
             steps {
                 script {
                     echo "Current branch: ${env.GIT_BRANCH}"
+                    echo "this is the second branch"
                 }
             }
         }
